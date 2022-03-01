@@ -13,15 +13,8 @@ services:
       - MYSQL_PASSWORD=pass
 
   node:
-    image: node:17
-    user: "node"
-    working_dir: /gate-simulator
+    image: node:16.14.0
+    build: ./gate-simulator
     ports:
       - '9999:9999'
-    volumes:
-      - ./:/home/node/app
-    environment:
-      - NODE_ENV=production
-    expose:
-      - "8081"
     command: "npm start"
