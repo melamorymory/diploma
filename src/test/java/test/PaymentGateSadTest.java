@@ -2,6 +2,7 @@ package test;
 
 import com.codeborne.selenide.SelenideElement;
 import data.DataHelper;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +23,7 @@ public class PaymentGateSadTest {
         data.clickThePaymentButton();
     }
 
-    //упав
+    //bug
     @Test
     public void shouldNotCarryOutTheOperationWithNameWithCyrillic() {
         data.getApprovedCard();
@@ -34,7 +35,7 @@ public class PaymentGateSadTest {
         data.getNameErrorNotification();
     }
 
-    //упав
+    //bug
     @Test
     public void shouldNotCarryOutTheOperationWithNameWithHieroglyphs() {
         data.getApprovedCard();
@@ -46,7 +47,7 @@ public class PaymentGateSadTest {
         data.getNameErrorNotification();
     }
 
-    //упав
+    //bug
     @Test
     public void shouldNotCarryOutTheOperationWithNumbersInTheNameField() {
         data.getApprovedCard();
@@ -58,7 +59,7 @@ public class PaymentGateSadTest {
         data.getNameErrorNotification();
     }
 
-    //упав
+    //bug
     @Test
     public void shouldNotCarryOutTheOperationWithSymbolsInTheNameField() {
         data.getApprovedCard();
@@ -68,10 +69,8 @@ public class PaymentGateSadTest {
         data.getValidCVC();
         data.clickTheContinueButton();
         data.getNameErrorNotification();
-
     }
 
-    //упав
     @Test
     public void shouldNotCarryOutTheOperationWithSpacesInTheNameField() {
         data.getApprovedCard();
@@ -81,10 +80,9 @@ public class PaymentGateSadTest {
         data.getValidCVC();
         data.clickTheContinueButton();
         data.getNameErrorNotification();
-        data.getErrorNotification();
     }
 
-    //упав
+    //bug
     @Test
     public void shouldNotCarryOutTheOperationWithNameOfOneLetter() {
         data.getApprovedCard();
@@ -96,7 +94,7 @@ public class PaymentGateSadTest {
         data.getNameErrorNotification();
     }
 
-    //упав
+    //bug
     @Test
     public void shouldNotCarryOutTheOperationWithDeclinedCard() {
         data.getDeclinedCard();
@@ -108,7 +106,6 @@ public class PaymentGateSadTest {
         data.getErrorNotification();
     }
 
-    //упав
     @Test
     public void shouldNotCarryOutTheOperationWithNonExistentCard() {
         cardField.setValue("0000 1111 2222 3333");
@@ -153,10 +150,10 @@ public class PaymentGateSadTest {
         data.getCardErrorNotification();
     }
 
-    //упав
+    //bug
     @Test
     public void shouldNotCarryOutTheOperationWithExpiredCard() {
-        data.getValidName();
+        data.getApprovedCard();
         data.getMonth(1);
         data.getYear(5);
         data.getValidName();
@@ -165,10 +162,9 @@ public class PaymentGateSadTest {
         data.getErrorNotification();
     }
 
-    //упав
     @Test
     public void shouldNotCarryOutTheOperationWithLongExpiredCard() {
-        data.getValidName();
+        data.getApprovedCard();
         data.getMonth(0);
         data.getYear(6);
         data.getValidName();
@@ -177,10 +173,9 @@ public class PaymentGateSadTest {
         data.getYearErrorNotification();
     }
 
-    //упав
     @Test
     public void shouldNotCarryOutTheOperationWithWrongMonth() {
-        data.getValidName();
+        data.getApprovedCard();
         monthField.setValue("13");
         data.getYear(2);
         data.getValidName();
@@ -191,7 +186,7 @@ public class PaymentGateSadTest {
 
     @Test
     public void shouldNotCarryOutTheOperationWithLettersInMonthField() {
-        data.getValidName();
+        data.getApprovedCard();
         monthField.setValue("Hello");
         data.getYear(2);
         data.getValidName();
@@ -202,7 +197,7 @@ public class PaymentGateSadTest {
 
     @Test
     public void shouldNotCarryOutTheOperationWithSymbolsInMonthField() {
-        data.getValidName();
+        data.getApprovedCard();
         monthField.setValue("/.,=-");
         data.getYear(2);
         data.getValidName();
@@ -213,7 +208,7 @@ public class PaymentGateSadTest {
 
     @Test
     public void shouldNotCarryOutTheOperationWithSpaceInMonthField() {
-        data.getValidName();
+        data.getApprovedCard();
         monthField.setValue(" ");
         data.getYear(2);
         data.getValidName();
@@ -224,7 +219,7 @@ public class PaymentGateSadTest {
 
     @Test
     public void shouldNotCarryOutTheOperationWithLettersInYearField() {
-        data.getValidName();
+        data.getApprovedCard();
         data.getMonth(0);
         yearField.setValue("Hello");
         data.getValidName();
@@ -235,7 +230,7 @@ public class PaymentGateSadTest {
 
     @Test
     public void shouldNotCarryOutTheOperationWithSymbolsInYearField() {
-        data.getValidName();
+        data.getApprovedCard();
         data.getMonth(0);
         yearField.setValue("/.,=-");
         data.getValidName();
@@ -246,7 +241,7 @@ public class PaymentGateSadTest {
 
     @Test
     public void shouldNotCarryOutTheOperationWithSpaceInYearField() {
-        data.getValidName();
+        data.getApprovedCard();
         data.getMonth(0);
         yearField.setValue(" ");
         data.getValidName();
@@ -257,7 +252,7 @@ public class PaymentGateSadTest {
 
     @Test
     public void shouldNotCarryOutTheOperationWithTwoNumbersInCVCField() {
-        data.getValidName();
+        data.getApprovedCard();
         data.getMonth(0);
         data.getYear(2);
         data.getValidName();
@@ -266,10 +261,10 @@ public class PaymentGateSadTest {
         data.getCVCErrorNotification();
     }
 
-    //упав
+    //bug whit postgres
     @Test
     public void shouldCarryOutTheOperationWithFourNumbersInCVCField() {
-        data.getValidName();
+        data.getApprovedCard();
         data.getMonth(0);
         data.getYear(2);
         data.getValidName();
@@ -278,9 +273,10 @@ public class PaymentGateSadTest {
         data.getSuccessNotification();
     }
 
+    //после нажатия кнопки продолжить вылезает уведомление для поля имени "Это поле обязательно для заполнения"
     @Test
     public void shouldNotCarryOutTheOperationWithLettersInCVCField() {
-        data.getValidName();
+        data.getApprovedCard();
         data.getMonth(0);
         data.getYear(2);
         data.getValidName();
@@ -289,9 +285,10 @@ public class PaymentGateSadTest {
         data.getCVCErrorNotification();
     }
 
+    //после нажатия кнопки продолжить вылезает уведомление для поля имени "Это поле обязательно для заполнения"
     @Test
     public void shouldNotCarryOutTheOperationWithSymbolsInCVCField() {
-        data.getValidName();
+        data.getApprovedCard();
         data.getMonth(0);
         data.getYear(2);
         data.getValidName();
@@ -300,9 +297,10 @@ public class PaymentGateSadTest {
         data.getCVCErrorNotification();
     }
 
+    //после нажатия кнопки продолжить вылезает уведомление для поля имени "Это поле обязательно для заполнения"
     @Test
     public void shouldNotCarryOutTheOperationWithSpaceInCVCField() {
-        data.getValidName();
+        data.getApprovedCard();
         data.getMonth(0);
         data.getYear(2);
         data.getValidName();
@@ -320,6 +318,4 @@ public class PaymentGateSadTest {
         data.getNameErrorNotification();
         data.getCVCErrorNotification();
     }
-
-
 }

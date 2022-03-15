@@ -17,6 +17,7 @@ public class CreditGateHappyTest {
         data.clickTheCreditButton();
     }
 
+    // all tests have failed whit postgres
     @Test
     public void shouldCarryOutTheOperation() {
         data.getApprovedCard();
@@ -29,7 +30,7 @@ public class CreditGateHappyTest {
     }
 
     @Test
-    public void shouldCarryOutTheOperationWithNameWithSpace() {
+    public void shouldCarryOutTheOperationWithNameWith2Spaces() {
         data.getApprovedCard();
         data.getMonth(0);
         data.getYear(2);
@@ -55,7 +56,7 @@ public class CreditGateHappyTest {
         data.getApprovedCard();
         data.getMonth(0);
         data.getYear(2);
-        nameField.setValue("A I");
+        nameField.setValue("I N");
         data.getValidCVC();
         data.clickTheContinueButton();
         data.getSuccessNotification();
