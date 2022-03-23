@@ -2,11 +2,15 @@ package test;
 
 import com.codeborne.selenide.SelenideElement;
 import data.DataHelper;
+import lombok.SneakyThrows;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
+import static data.DBHelper.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class CreditGateSadTest {
     private SelenideElement monthField = $x("//*[@id=\"root\"]/div/form/fieldset/div[2]/span/span[1]/span/span/span[2]/input");
@@ -16,11 +20,16 @@ public class CreditGateSadTest {
     private SelenideElement cardField = $x("//*[@id=\"root\"]/div/form/fieldset/div[1]/span/span/span[2]/input");
     DataHelper data = new DataHelper();
 
-
     @BeforeEach
     public void setUp() {
         open("http://localhost:8080");
         data.clickTheCreditButton();
+    }
+
+    @SneakyThrows
+    @AfterEach
+    public void cleanDatabase() {
+        deleteData();
     }
 
     //bug
@@ -104,8 +113,10 @@ public class CreditGateSadTest {
         data.getValidCVC();
         data.clickTheContinueButton();
         data.getErrorNotification();
+        assertNotNull(getCreditStatus());
     }
 
+    //bug, info not save in db
     @Test
     public void shouldNotCarryOutTheOperationWithNonExistentCard() {
         cardField.setValue("0000 1111 2222 3333");
@@ -115,6 +126,7 @@ public class CreditGateSadTest {
         data.getValidCVC();
         data.clickTheContinueButton();
         data.getErrorNotification();
+        assertNotNull(getCreditStatus());
     }
 
     @Test
@@ -160,6 +172,7 @@ public class CreditGateSadTest {
         data.getValidCVC();
         data.clickTheContinueButton();
         data.getErrorNotification();
+        assertNotNull(getCreditStatus());
     }
 
     @Test
@@ -259,18 +272,6 @@ public class CreditGateSadTest {
         cvcField.setValue("00");
         data.clickTheContinueButton();
         data.getCVCErrorNotification();
-    }
-
-    //bug whit postgres
-    @Test
-    public void shouldCarryOutTheOperationWithFourNumbersInCVCField() {
-        data.getApprovedCard();
-        data.getMonth(0);
-        data.getYear(2);
-        data.getValidName();
-        cvcField.setValue("0000");
-        data.clickTheContinueButton();
-        data.getSuccessNotification();
     }
 
     //после нажатия кнопки продолжить вылезает уведомление для поля имени "Поле обязательно для заполнения"

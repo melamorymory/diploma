@@ -2,13 +2,18 @@ package test;
 
 import com.codeborne.selenide.SelenideElement;
 import data.DataHelper;
+import lombok.SneakyThrows;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.*;
+import static data.DBHelper.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class CreditGateHappyTest {
     private SelenideElement nameField = $x("//*[@id=\"root\"]/div/form/fieldset/div[3]/span/span[1]/span/span/span[2]/input");
+    private SelenideElement cvcField = $x("//*[@id=\"root\"]/div/form/fieldset/div[3]/span/span[2]/span/span/span[2]/input");
     DataHelper data = new DataHelper();
 
     @BeforeEach
@@ -17,7 +22,13 @@ public class CreditGateHappyTest {
         data.clickTheCreditButton();
     }
 
-    // all tests have failed whit postgres
+    @SneakyThrows
+    @AfterEach
+    public void cleanDatabase() {
+        deleteData();
+    }
+
+    // all tests have failed with postgres
     @Test
     public void shouldCarryOutTheOperation() {
         data.getApprovedCard();
@@ -27,6 +38,7 @@ public class CreditGateHappyTest {
         data.getValidCVC();
         data.clickTheContinueButton();
         data.getSuccessNotification();
+        assertNotNull(getCreditStatus());
     }
 
     @Test
@@ -38,6 +50,7 @@ public class CreditGateHappyTest {
         data.getValidCVC();
         data.clickTheContinueButton();
         data.getSuccessNotification();
+        assertNotNull(getCreditStatus());
     }
 
     @Test
@@ -49,6 +62,7 @@ public class CreditGateHappyTest {
         data.getValidCVC();
         data.clickTheContinueButton();
         data.getSuccessNotification();
+        assertNotNull(getCreditStatus());
     }
 
     @Test
@@ -60,6 +74,7 @@ public class CreditGateHappyTest {
         data.getValidCVC();
         data.clickTheContinueButton();
         data.getSuccessNotification();
+        assertNotNull(getCreditStatus());
     }
 
     @Test
@@ -71,6 +86,7 @@ public class CreditGateHappyTest {
         data.getValidCVC();
         data.clickTheContinueButton();
         data.getSuccessNotification();
+        assertNotNull(getCreditStatus());
     }
 
     @Test
@@ -82,5 +98,18 @@ public class CreditGateHappyTest {
         data.getValidCVC();
         data.clickTheContinueButton();
         data.getSuccessNotification();
+        assertNotNull(getCreditStatus());
+    }
+
+    @Test
+    public void shouldCarryOutTheOperationWithFourNumbersInCVCField() {
+        data.getApprovedCard();
+        data.getMonth(0);
+        data.getYear(2);
+        data.getValidName();
+        cvcField.setValue("0000");
+        data.clickTheContinueButton();
+        data.getSuccessNotification();
+        assertNotNull(getCreditStatus());
     }
 }
