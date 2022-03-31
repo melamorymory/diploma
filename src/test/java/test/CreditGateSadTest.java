@@ -7,17 +7,17 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
 import static data.DBHelper.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class CreditGateSadTest {
-    private SelenideElement monthField = $x("//*[@id=\"root\"]/div/form/fieldset/div[2]/span/span[1]/span/span/span[2]/input");
-    private SelenideElement yearField = $x("//*[@id=\"root\"]/div/form/fieldset/div[2]/span/span[2]/span/span/span[2]/input");
-    private SelenideElement nameField = $x("//*[@id=\"root\"]/div/form/fieldset/div[3]/span/span[1]/span/span/span[2]/input");
-    private SelenideElement cvcField = $x("//*[@id=\"root\"]/div/form/fieldset/div[3]/span/span[2]/span/span/span[2]/input");
-    private SelenideElement cardField = $x("//*[@id=\"root\"]/div/form/fieldset/div[1]/span/span/span[2]/input");
+    private SelenideElement cardField = $(".form-field:first-child .input__control");
+    private SelenideElement monthField = $(".form-field:nth-child(2) .input-group__input-case:first-child .input__control");
+    private SelenideElement yearField = $(".form-field:nth-child(2) .input-group__input-case:last-child .input__control");
+    private SelenideElement nameField = $(".form-field:nth-child(3) .input-group__input-case:first-child .input__control");
+    private SelenideElement cvcField = $(".form-field:nth-child(3) .input-group__input-case:last-child .input__control");
     DataHelper data = new DataHelper();
 
     @BeforeEach

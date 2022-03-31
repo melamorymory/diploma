@@ -11,21 +11,21 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class DataHelper {
 
-    private SelenideElement paymentButton = $x("//*[@id=\"root\"]/div/button[1]");
-    private SelenideElement creditButton = $x("//*[@id=\"root\"]/div/button[2]");
-    private SelenideElement continueButton = $x("//*[@id=\"root\"]/div/form/fieldset/div[4]/button");
-    private SelenideElement cardField = $x("//*[@id=\"root\"]/div/form/fieldset/div[1]/span/span/span[2]/input");
-    private SelenideElement monthField = $x("//*[@id=\"root\"]/div/form/fieldset/div[2]/span/span[1]/span/span/span[2]/input");
-    private SelenideElement yearField = $x("//*[@id=\"root\"]/div/form/fieldset/div[2]/span/span[2]/span/span/span[2]/input");
-    private SelenideElement nameField = $x("//*[@id=\"root\"]/div/form/fieldset/div[3]/span/span[1]/span/span/span[2]/input");
-    private SelenideElement cvcField = $x("//*[@id=\"root\"]/div/form/fieldset/div[3]/span/span[2]/span/span/span[2]/input");
-    private SelenideElement notification = $x("//*[@id=\"root\"]/div/div[2]");
-    private SelenideElement errorNotification =$x("//*[@id=\"root\"]/div/div[3]");
-    private SelenideElement nameError = $x("//*[@id=\"root\"]/div/form/fieldset/div[3]/span/span[1]/span/span/span[3]");
-    private SelenideElement cardError =$x("//*[@id=\"root\"]/div/form/fieldset/div[1]/span/span/span[3]");
-    private SelenideElement monthError =$x("//*[@id=\"root\"]/div/form/fieldset/div[2]/span/span[1]/span/span/span[3]");
-    private SelenideElement yearError =$x("//*[@id=\"root\"]/div/form/fieldset/div[2]/span/span[2]/span/span/span[3]");
-    private SelenideElement cvcError =$x("//*[@id=\"root\"]/div/form/fieldset/div[3]/span/span[2]/span/span/span[3]");
+    private SelenideElement paymentButton = $$(".button").find(exactText("Купить"));
+    private SelenideElement creditButton = $$(".button").find(exactText("Купить в кредит"));
+    private SelenideElement continueButton = $$(".button").find(text("Продолжить"));
+    private SelenideElement cardField = $(".form-field:first-child .input__control");
+    private SelenideElement monthField = $(".form-field:nth-child(2) .input-group__input-case:first-child .input__control");
+    private SelenideElement yearField = $(".form-field:nth-child(2) .input-group__input-case:last-child .input__control");
+    private SelenideElement nameField = $(".form-field:nth-child(3) .input-group__input-case:first-child .input__control");
+    private SelenideElement cvcField = $(".form-field:nth-child(3) .input-group__input-case:last-child .input__control");
+    private SelenideElement notification = $$(".notification").find(text("Успешно Операция одобрена Банком."));
+    private SelenideElement errorNotification = $$(".notification").find(text("Ошибка Ошибка! Банк отказал в проведении операции."));
+    private SelenideElement nameError = $(".form-field:nth-child(3) .input-group__input-case:first-child .input__sub");
+    private SelenideElement cardError = $(".form-field:first-child .input__sub");
+    private SelenideElement monthError = $(".form-field:nth-child(2) .input-group__input-case:first-child .input__sub");
+    private SelenideElement yearError = $(".form-field:nth-child(2) .input-group__input-case:last-child .input__sub");
+    private SelenideElement cvcError = $(".form-field:nth-child(3) .input-group__input-case:last-child .input__sub");
 
     public DataHelper() {
     }

@@ -12,8 +12,8 @@ import static data.DBHelper.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class CreditGateHappyTest {
-    private SelenideElement nameField = $x("//*[@id=\"root\"]/div/form/fieldset/div[3]/span/span[1]/span/span/span[2]/input");
-    private SelenideElement cvcField = $x("//*[@id=\"root\"]/div/form/fieldset/div[3]/span/span[2]/span/span/span[2]/input");
+    private SelenideElement nameField = $(".form-field:nth-child(3) .input-group__input-case:first-child .input__control");
+    private SelenideElement cvcField = $(".form-field:nth-child(3) .input-group__input-case:last-child .input__control");
     DataHelper data = new DataHelper();
 
     @BeforeEach
@@ -28,7 +28,7 @@ public class CreditGateHappyTest {
         deleteData();
     }
 
-    // all tests have failed with postgres
+
     @Test
     public void shouldCarryOutTheOperation() {
         data.getApprovedCard();
