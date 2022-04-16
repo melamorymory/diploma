@@ -9,9 +9,13 @@ import java.sql.SQLException;
 
 public class DBHelper {
     private static final QueryRunner runner = new QueryRunner();
-    private static String dbURL = System.getProperty("url", "jdbc:mysql://localhost:3306/app");
-    private static String dbUser = System.getProperty("user", "app");
-    private static String dbPass = System.getProperty("password", "pass");
+//    private static String dbURL = System.getProperty("url", "jdbc:mysql://localhost:3306/app");
+//    private static String dbUser = System.getProperty("user", "app");
+//    private static String dbPass = System.getProperty("password", "pass");
+
+    private static String dbURL = System.getProperty("url");
+    private static String dbUser = System.getProperty("user");
+    private static String dbPass = System.getProperty("password");
 
     public static void deleteData() throws SQLException {
         try (var conn = DriverManager.getConnection(dbURL, dbUser, dbPass)) {

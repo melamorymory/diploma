@@ -1,11 +1,11 @@
 package test;
 
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import data.DataHelper;
+import io.qameta.allure.selenide.AllureSelenide;
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static com.codeborne.selenide.Selenide.*;
 import static data.DBHelper.*;
@@ -18,6 +18,16 @@ public class PaymentGateSadTest {
     private SelenideElement nameField = $(".form-field:nth-child(3) .input-group__input-case:first-child .input__control");
     private SelenideElement cvcField = $(".form-field:nth-child(3) .input-group__input-case:last-child .input__control");
     DataHelper data = new DataHelper();
+
+    @BeforeAll
+    static void setUpAll() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    }
+
+    @AfterAll
+    static void tearDownAll() {
+        SelenideLogger.removeListener("allure");
+    }
 
     @BeforeEach
     public void setUp() {
