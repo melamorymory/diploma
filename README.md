@@ -1,3 +1,9 @@
+## Документация проекта
+* [Исходники проекта](https://github.com/netology-code/qa-diploma)
+* [План автоматизации тестирования](https://github.com/melamorymory/diploma/blob/master/Plan.md)
+* [Отчёт о тестировании](https://github.com/melamorymory/diploma/blob/master/Report.md)
+* [Отчёт о проведённой автоматизации тестирования](https://github.com/melamorymory/diploma/blob/master/Summary.md)
+
 ## Процедура запуска авто-тестов
 1) Склонировать репозиторий на свой ПК командой `git clone https://github.com/melamorymory/diploma`
 2) Открыть проект в IntelliJ IDEA
