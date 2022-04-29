@@ -7,3 +7,4 @@
 * для PostgreSQL `java -jar .\aqa-shop.jar -P:jdbc.url=postgresql://localhost:5432/app -P:jdbc.user=app -P:jdbc.password=pass`
 * для MySQL `java -jar .\aqa-shop.jar -P:jdbc.url=mysql://localhost:3306/app -P:jdbc.user=app -P:jdbc.password=pass`
 7) Запустить нужные авто-тесты
+8) Запустить формирование отчёта командой `./gradlew allureServe`
