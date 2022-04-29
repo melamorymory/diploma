@@ -126,7 +126,7 @@ public class CreditGateSadTest {
         assertNotNull(getCreditStatus());
     }
 
-    //bug, info not save in db
+    //bug
     @Test
     public void shouldNotCarryOutTheOperationWithNonExistentCard() {
         cardField.setValue("0000 1111 2222 3333");

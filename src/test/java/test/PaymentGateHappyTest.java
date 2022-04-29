@@ -56,7 +56,7 @@ public class PaymentGateHappyTest {
         data.getApprovedCard();
         data.getMonth(0);
         data.getYear(2);
-        nameField.setValue("Bang Chistopher Chan");
+        nameField.setValue("Bang Christopher Chan");
         data.getValidCVC();
         data.clickTheContinueButton();
         data.getSuccessNotification();

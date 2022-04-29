@@ -14,7 +14,6 @@ public class DataHelper {
     private SelenideElement paymentButton = $$(".button").find(exactText("Купить"));
     private SelenideElement creditButton = $$(".button").find(exactText("Купить в кредит"));
     private SelenideElement continueButton = $$(".button").find(text("Продолжить"));
-//    private SelenideElement cardField = $x("//*[@id=\"root\"]/div/form/fieldset/*/span/span/span/following-sibling::span[position()='1']/input");
     private SelenideElement cardField = $(".form-field:first-child .input__control");
     private SelenideElement monthField = $(".form-field:nth-child(2) .input-group__input-case:first-child .input__control");
     private SelenideElement yearField = $(".form-field:nth-child(2) .input-group__input-case:last-child .input__control");
